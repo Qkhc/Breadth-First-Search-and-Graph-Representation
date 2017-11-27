@@ -1,0 +1,97 @@
+README
+Robert Mushkot
+rmushkot
+1543374
+pa4
+
+Files contained:
+List.c - Implementation file for the List ADT.
+List.h - Header file for the List ADT.
+Graph.c - Implementation file for the Graph ADT.
+Graph.h - Header file for the Graph ADT.
+GraphTest.c - Client used for testing the Graph ADT.
+FindPath.c - Implements the Graph ADT and uses Breadth First Search to find the shortest paths between vertices.
+Makefile - Creates an executable file called FindPath. 
+README - This file describing the contents and purpose of the program.
+
+Breadth First Search and Shortest Paths in Graphs.
+
+This project implements a Graph ADT that represents a graph as an array of Lists. Each vertex will be associated
+with an integer label in the range 1 to n, where n is the number of vertices in the graph. This program will
+use this Graph ADT to find shortest paths (i.e. paths with the fewest edges) between pairs of vertices. 
+
+The client program is called FindPath and takes two command line arguemnts and is called using
+
+FindPath input_file output_file
+
+FILE FORMAT
+
+The input file will be in two parts. The first part will begin with a line consisting of a single integer n
+giving the number of vertices in the graph. Each subsequent line will represent an edge by a pair of distinct
+numbers in the range 1 to n, separated by a space. These numbers are the end vertices of the corresponding
+edge. The first part of the input file defines the graph, and will be terminated by a dummy line containing
+“0 0”. After these lines are read the program will print the adjacency list representation of the graph to
+the output file. For instance, the lines below define a graph, and cause the above adjacency
+list representation to be printed.
+
+6
+1 2
+1 3
+2 4
+2 5
+2 6
+3 4
+4 5
+5 6
+0 0
+
+1: 2 3
+2: 1 4 5 6
+3: 1 4
+4: 2 3 5
+5: 2 4 6
+6: 2 5
+
+The second part of the input file will consist of a number of lines, each consisting of a pair of integers in
+the range 1 to n, separated by a space. Each line specifies a pair of vertices in the graph; a starting point (or
+source) and a destination. The second part of the input file will also be terminated by the dummy line “0 0”.
+
+For each source destination pair the program will:
+1) Perform a BFS from the given source vertex, which assigns a parent vertex to every vertex in the graph.
+2) Use the result of the BFS to print the distance from the source vertex to the destination vertex, then print
+   out a shortes path from source to destination.
+
+An example file input output of this program would be:
+
+Input File:
+7
+1 4
+1 5
+4 5
+2 3
+2 6
+3 7
+6 7
+0 0
+2 7
+3 6
+1 7
+0 0
+
+Output File:
+1: 4 5
+2: 3 6
+3: 2 7
+4: 1 5
+5: 1 4
+6: 2 7
+7: 3 6
+
+The distance from 2 to 7 is 2
+A shortest 2-7 path is: 2 3 7
+
+The distance from 3 to 6 is 2
+A shortest 3-6 path is: 3 2 6
+
+The distance from 1 to 7 is infinity
+No 1-7 path exists
